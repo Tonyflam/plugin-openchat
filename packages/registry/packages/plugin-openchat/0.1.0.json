@@ -1,0 +1,33 @@
+{
+  "name": "plugin-openchat",
+  "version": "0.1.0",
+  "description": "OpenChat integration plugin for ElizaOS - enables agents to interact with OpenChat platform",
+  "type": "module",
+  "platform": "node",
+  "runtimeVersion": "1.6.5",
+  "maintainers": [
+    "Tonyflam"
+  ],
+  "publishedAt": "2025-12-08T16:56:47.826Z",
+  "publishedBy": "Tonyflam",
+  "dependencies": {
+    "@elizaos/core": "*",
+    "@open-ic/openchat-botclient-ts": "^1.0.61",
+    "express": "^5.1.0",
+    "cors": "^2.8.5",
+    "uuid": "^11.0.3",
+    "msgpackr": "^1.11.2",
+    "@dfinity/agent": "^2.2.0",
+    "@dfinity/identity-secp256k1": "^2.2.0",
+    "@dfinity/principal": "^2.2.0"
+  },
+  "tags": [
+    "plugin",
+    "elizaos",
+    "openchat",
+    "web3",
+    "chat",
+    "bot"
+  ],
+  "license": "MIT"
+}
