@@ -8,7 +8,7 @@
   "maintainers": [
     "Tonyflam"
   ],
-  "publishedAt": "2025-12-08T16:56:47.826Z",
+  "publishedAt": "2025-12-08T17:00:22.860Z",
   "publishedBy": "Tonyflam",
   "dependencies": {
     "@elizaos/core": "*",
@@ -29,5 +29,6 @@
     "chat",
     "bot"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "npmPackage": "@tonyflam/plugin-openchat"
 }
