@@ -1,6 +1,6 @@
 {
   "name": "@tonyflam/plugin-openchat",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "OpenChat integration plugin for ElizaOS - enables agents to interact with OpenChat platform",
   "type": "module",
   "main": "dist/index.js",
@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/Tonyflam/plugin-openchat#readme",
   "bugs": {
-    "url":  "https://github.com/Tonyflam/plugin-openchat/issues"
+    "url": "https://github.com/Tonyflam/plugin-openchat/issues"
   },
   "exports": {
     "./package. json": "./package.json",
@@ -53,9 +53,9 @@
     "@dfinity/identity-secp256k1": "^2.2.0",
     "@dfinity/principal": "^2.2.0"
   },
-  "devDependencies":  {
+  "devDependencies": {
     "@types/cors": "^2.8.19",
-    "@types/express":  "^5.0.3",
+    "@types/express": "^5.0.3",
     "@types/uuid": "^10.0.0",
     "typescript": "^5.8.2"
   },
@@ -80,9 +80,9 @@
       "OPENCHAT_IC_HOST": {
         "type": "string",
         "description": "Internet Computer host URL (e.g., https://ic0.app)",
-        "required":  true
+        "required": true
       },
-      "OPENCHAT_STORAGE_INDEX_CANISTER":  {
+      "OPENCHAT_STORAGE_INDEX_CANISTER": {
         "type": "string",
         "description": "OpenChat storage index canister ID",
         "required": true
