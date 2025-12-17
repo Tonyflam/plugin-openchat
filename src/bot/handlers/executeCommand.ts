@@ -221,7 +221,6 @@ async function handleChatCommand(
             worldId: roomId,
             type: channelType,
             channelId: metadata.chatId,
-            serverId: metadata.chatId,
         });
     } catch (connectionError: any) {
         runtime.logger?.warn?.(

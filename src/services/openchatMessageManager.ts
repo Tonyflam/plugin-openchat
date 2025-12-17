@@ -87,7 +87,6 @@ export class OpenChatMessageManager {
                 worldId: roomId,
                 type: channelType,
                 channelId: metadata.chatId,
-                serverId: metadata.chatId,
             });
         } catch (connectionError: any) {
             this.runtime.logger?.warn?.(
