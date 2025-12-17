@@ -1,4 +1,4 @@
-# @elizaos/plugin-openchat
+# @tonyflam/plugin-openchat
 
 OpenChat integration plugin for ElizaOS - enables AI agents to interact with the OpenChat platform (oc.app), a decentralized chat application built on the Internet Computer.
 
@@ -16,9 +16,9 @@ OpenChat integration plugin for ElizaOS - enables AI agents to interact with the
 ## Installation
 
 ```bash
-npm install @elizaos/plugin-openchat
+npm install @tonyflam/plugin-openchat
 # or
-bun add @elizaos/plugin-openchat
+bun add @tonyflam/plugin-openchat
 ```
 
 ## Configuration
@@ -66,7 +66,7 @@ OPENCHAT_WELCOME_NEW_MEMBERS="true"
 ### Add to Your Character
 
 ```typescript
-import { openchatPlugin } from "@elizaos/plugin-openchat";
+import { openchatPlugin } from "@tonyflam/plugin-openchat";
 
 export default {
     name: "YourAgent",
@@ -80,7 +80,7 @@ export default {
 ```json
 {
   "name": "your-agent",
-  "plugins": ["@elizaos/plugin-openchat"]
+  "plugins": ["@tonyflam/plugin-openchat"]
 }
 ```
 
