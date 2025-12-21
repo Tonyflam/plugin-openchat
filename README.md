@@ -1,5 +1,14 @@
 # @tonyflam/plugin-openchat
 
+> **⚠️ EXPERIMENTAL / BETA STATUS**
+> 
+> This plugin is currently in active development and **not production-ready**. Known limitations:
+> - **Installation persistence**: Bot installations are stored in memory only. Restarts will lose installation data.
+> - **Error messaging**: Some validation errors may appear as public messages instead of ephemeral.
+> - **Horizontal scaling**: Not supported due to in-memory state management.
+> 
+> These issues are being actively addressed. For production deployments, please wait for a stable release or use at your own risk.
+
 OpenChat integration plugin for ElizaOS - enables AI agents to interact with the OpenChat platform (oc.app), a decentralized chat application built on the Internet Computer.
 
 ## Features

@@ -22,6 +22,17 @@ function hasBotClient(req: Request): req is WithBotClient {
 }
 
 /**
+ * Helper to send ephemeral error message
+ */
+async function sendEphemeralError(
+    client: WithBotClient["botClient"],
+    message: string
+): Promise<void> {
+    const msg = (await client.createTextMessage(message)).makeEphemeral().setFinalised(true);
+    await client.sendMessage(msg);
+}
+
+/**
  * Helper to create success response
  */
 function success(msg?: any) {
@@ -171,7 +182,7 @@ async function handleChatCommand(
     // Get message argument
     const message = client.stringArg("message");
     if (message === undefined) {
-        const msg = (await client.createTextMessage("Please provide a message.")).setFinalised(true);
+        const msg = (await client.createTextMessage("Please provide a message.")).makeEphemeral().setFinalised(true);
         await client.sendMessage(msg);
         return;
     }
@@ -179,21 +190,21 @@ async function handleChatCommand(
     const service = (runtime as any).getService?.("openchat") as OpenChatClientService | undefined;
     if (!service) {
         runtime.logger?.error("[OpenChat] Service not available for chat command");
-        await sendFallbackResponse(runtime, client, message);
+        await sendEphemeralError(client, "⚠️ OpenChat service is currently unavailable. Please try again later.");
         return;
     }
 
     const chatId = client.chatId;
     if (!chatId) {
         runtime.logger?.warn("[OpenChat] Chat identifier missing in command scope");
-        await sendFallbackResponse(runtime, client, message);
+        await sendEphemeralError(client, "⚠️ Unable to identify chat context. Please try again.");
         return;
     }
 
     const installation = service.getInstallationByChatId(chatId);
     if (!installation) {
         runtime.logger?.warn("[OpenChat] Installation not found for chat command");
-        await sendFallbackResponse(runtime, client, message);
+        await sendEphemeralError(client, "⚠️ Bot is not properly installed in this chat. Please reinstall.");
         return;
     }
 
@@ -261,8 +272,8 @@ async function handleChatCommand(
     };
 
     if (!runtime.messageService) {
-        runtime.logger?.warn("[OpenChat] messageService unavailable, using fallback response");
-        await sendFallbackResponse(runtime, client, message);
+        runtime.logger?.warn("[OpenChat] messageService unavailable, cannot process message");
+        await sendEphemeralError(client, "⚠️ Message processing service unavailable. Please try again later.");
         return;
     }
 
@@ -279,7 +290,7 @@ async function handleChatCommand(
         await runtime.messageService.handleMessage(runtime, memory, callback);
     } catch (error: any) {
         runtime.logger?.error("[OpenChat] Error handling chat command:", error?.message || error);
-        await sendFallbackResponse(runtime, client, message);
+        await sendEphemeralError(client, "⚠️ Failed to process your message. Please try again.");
     }
 }
 

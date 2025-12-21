@@ -16,7 +16,9 @@
     "openchat",
     "web3",
     "chat",
-    "bot"
+    "bot",
+    "experimental",
+    "beta"
   ],
   "repository": {
     "type": "git",
