@@ -29,10 +29,9 @@
     "url": "https://github.com/Tonyflam/plugin-openchat/issues"
   },
   "exports": {
-    "./package. json": "./package.json",
-    ". ": {
+    "./package.json": "./package.json",
+    ".": {
       "import": {
-        "@elizaos/source": "./src/index.ts",
         "types": "./dist/index.d.ts",
         "default": "./dist/index.js"
       }
