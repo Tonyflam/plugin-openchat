@@ -1,6 +1,6 @@
 {
   "name": "@tonyflam/plugin-openchat",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "OpenChat integration plugin for ElizaOS - enables agents to interact with OpenChat platform",
   "type": "module",
   "main": "dist/index.js",
@@ -48,7 +48,7 @@
     "@dfinity/identity-secp256k1": "^2.2.0",
     "@dfinity/principal": "^2.2.0",
     "@elizaos/core": "latest",
-    "@open-ic/openchat-botclient-ts": "^1.0.61",
+    "@open-ic/openchat-botclient-ts": "^1.0.63",
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "msgpackr": "^1.11.2",
