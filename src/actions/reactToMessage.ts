@@ -207,7 +207,7 @@ export const reactToMessageAction: Action = {
         if (callback) {
             callback({
                 text: `Reacted with ${reaction} in OpenChat`,
-                content: { success: true },
+                content: { success: true, reaction },
             });
         }
     },
