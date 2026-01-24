@@ -3,9 +3,10 @@
 > **⚠️ EXPERIMENTAL / BETA STATUS**
 > 
 > This plugin is currently in active development and **not production-ready**. Known limitations:
-> - **Installation persistence**: Bot installations are stored in memory only. Restarts will lose installation data.
-> - **Error messaging**: Some validation errors may appear as public messages instead of ephemeral.
-> - **Horizontal scaling**: Not supported due to in-memory state management.
+> - **Error messaging**: Some validation errors may appear as public messages instead of ephemeral (being improved).
+> - **Horizontal scaling**: Not supported due to shared state requirements.
+> 
+> ✅ **Installation persistence**: Now supported! Bot installations are loaded from OpenChat backend on startup (SDK 1.0.64+).
 > 
 > These issues are being actively addressed. For production deployments, please wait for a stable release or use at your own risk.
 

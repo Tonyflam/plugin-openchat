@@ -31,6 +31,7 @@ Use \`/help\` to see available commands or \`/chat <message>\` to start chatting
 
 async function handleInstallEvent(
     event: BotInstalledEvent,
+    timestamp: bigint,
     apiGateway: string,
     runtime: IAgentRuntime,
     service: OpenChatClientService,
@@ -39,6 +40,7 @@ async function handleInstallEvent(
         apiGateway,
         event.grantedCommandPermissions,
         event.grantedAutonomousPermissions,
+        timestamp
     );
     service.recordInstallation(event.location, record);
 
@@ -201,11 +203,12 @@ async function routeBotEvent(
     service: OpenChatClientService,
     client: BotClient,
     event: BotEvent,
+    timestamp: bigint,
     apiGateway: string,
 ): Promise<void> {
     switch (event.kind) {
         case "bot_installed_event":
-            await handleInstallEvent(event, apiGateway, runtime, service);
+            await handleInstallEvent(event, timestamp, apiGateway, runtime, service);
             return;
         case "bot_uninstalled_event":
             handleUninstallEvent(event, service);
@@ -245,8 +248,8 @@ export async function notifyHandler(
             signature,
             req.body as Buffer,
             service.getFactory(),
-            async (client, event, apiGateway) => {
-                await routeBotEvent(runtime, service, client, event, apiGateway);
+            async (client, event, timestamp: bigint, apiGateway: string) => {
+                await routeBotEvent(runtime, service, client, event, timestamp, apiGateway);
             },
             (failure) => {
                 const errorMessage =

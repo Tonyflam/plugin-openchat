@@ -48,7 +48,7 @@
     "@dfinity/identity-secp256k1": "^2.2.0",
     "@dfinity/principal": "^2.2.0",
     "@elizaos/core": "latest",
-    "@open-ic/openchat-botclient-ts": "^1.0.63",
+    "@open-ic/openchat-botclient-ts": "^1.0.64",
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "msgpackr": "^1.11.2",

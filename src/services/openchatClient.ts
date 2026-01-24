@@ -89,6 +89,10 @@ export class OpenChatClientService extends Service {
         const service = new OpenChatClientService(runtime);
         service.initialize(config);
         await service.startServer();
+        
+        // Load historic installation events after server is ready
+        await service.loadInstallations();
+        
         service.logReadyBanner();
         return service;
     }
@@ -192,6 +196,61 @@ export class OpenChatClientService extends Service {
                 `║  3. Users can interact via /chat command                  ║\n` +
                 `╚════════════════════════════════════════════════════════════╝\n`
         );
+    }
+
+    /**
+     * Load historic installation events from OpenChat backend
+     * This allows the bot to recover its installation state on restart
+     */
+    private async loadInstallations(): Promise<void> {
+        try {
+            this.runtime.logger.info("Loading historic installation events...");
+            
+            const globalClient = this.factory.createGlobalClient();
+            const response = await globalClient.installationEvents();
+            
+            if (response.kind !== "success") {
+                this.runtime.logger.warn(
+                    "Failed to load installation events:",
+                    response.kind === "error" ? response.message : "Unknown error"
+                );
+                return;
+            }
+            
+            let installedCount = 0;
+            let uninstalledCount = 0;
+            
+            for (const event of response.events) {
+                switch (event.kind) {
+                    case "installed":
+                        this.recordInstallation(
+                            event.location,
+                            new InstallationRecord(
+                                event.apiGateway,
+                                event.grantedCommandPermissions,
+                                event.grantedAutonomousPermissions,
+                                event.installedAt
+                            )
+                        );
+                        installedCount++;
+                        break;
+                    case "uninstalled":
+                        this.recordUninstallation(event.location);
+                        uninstalledCount++;
+                        break;
+                }
+            }
+            
+            this.runtime.logger.success(
+                `Loaded ${response.events.length} installation events ` +
+                `(${installedCount} installed, ${uninstalledCount} uninstalled)`
+            );
+        } catch (error: any) {
+            this.runtime.logger.error(
+                "Error loading installation events:",
+                error?.message || error
+            );
+        }
     }
 
     /**
