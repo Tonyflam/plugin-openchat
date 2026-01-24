@@ -1,6 +1,6 @@
 {
   "name": "@tonyflam/plugin-openchat",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "OpenChat integration plugin for ElizaOS - enables agents to interact with OpenChat platform",
   "type": "module",
   "main": "dist/index.js",
